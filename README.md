@@ -43,7 +43,7 @@ E_{LK} = \sum_{i} \left( I_{xi} u + I_{yi} v + I_{ti} \right)^2
 ### Input Frames
 Below are the two consecutive frames used as input for the optical flow estimation:
 
-![Frame 1](path/to/frame1.png) ![Frame 2](path/to/frame2.png)
+![Frame 1](woman1.png) ![Frame 2](woman2.png)
 
 ### Estimated Optical Flow
 The estimated velocity vectors are shown below:
