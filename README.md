@@ -13,7 +13,7 @@ The project also introduces a hybrid approach that combines the strengths of bot
 
 ## Mathematical Formulations
 
-### 1. Optical Flow Constraint Equation (OFCE)
+### Optical Flow Constraint Equation (OFCE)
 The intensity of pixels remains constant during motion:
 \[
 I_x(p)u + I_y(p)v + I_t(p) = 0
@@ -24,85 +24,32 @@ where:
 
 ---
 
-### 2. Horn-Schunck Regularization
-The Horn-Schunck method assumes smoothness in the flow field by minimizing the following energy function:
+### Horn-Schunck Regularization
+Minimizes the following energy function for smoothness:
 \[
 E(u, v) = \int_\Omega \left( (I_x u + I_y v + I_t)^2 + \alpha \left( \|\nabla u\|^2 + \|\nabla v\|^2 \right) \right) d\Omega
 \]
-where:
-- \(\alpha\) is a regularization parameter.
-- \(\nabla u, \nabla v\) are gradients of the flow field components.
 
----
-
-### 3. Lucas-Kanade Local Estimation
-The Lucas-Kanade method assumes a constant flow within a local window:
+### Lucas-Kanade Local Estimation
+Solves for optical flow locally using:
 \[
 E_{LK} = \sum_{i} \left( I_{xi} u + I_{yi} v + I_{ti} \right)^2
 \]
-This results in solving:
-\[
-\begin{bmatrix}
-\sum I_x^2 & \sum I_x I_y \\
-\sum I_x I_y & \sum I_y^2
-\end{bmatrix}
-\begin{bmatrix}
-u \\
-v
-\end{bmatrix}
-=
-\begin{bmatrix}
--\sum I_x I_t \\
--\sum I_y I_t
-\end{bmatrix}
-\]
 
 ---
 
-### 4. Hybrid Approach
-The hybrid approach combines the smoothness constraint of Horn-Schunck with the localized robustness of Lucas-Kanade using Gaussian-weighted convolution:
-\[
-E(V) = \int_\Omega \left( V \cdot (W * (\nabla I \nabla I^T)) V^T + \alpha (\|\nabla u\|^2 + \|\nabla v\|^2) \right) d\Omega
-\]
-where:
-- \(W\) is a Gaussian filter.
+## Results
 
----
+### Input Frames
+Below are the two consecutive frames used as input for the optical flow estimation:
 
-## Implementation Highlights
+![Frame 1](path/to/frame1.png) ![Frame 2](path/to/frame2.png)
 
-### Programming Languages
-- **C** for core computation.
-- **MATLAB** for visualization.
+### Estimated Optical Flow
+The estimated velocity vectors are shown below:
 
-### Features
-- Partial derivative estimation using finite difference and Gaussian smoothing.
-- Iterative minimization for velocity computation.
-- Multi-resolution pyramids for faster computation and handling large motions.
+#### Using Horn-Schunck Method:
+![Horn-Schunck Results](path/to/horn_schunck_results.png)
 
----
-
-## Visual Demos
-
-### 1. Zero Padding Example
-Illustrates boundary handling during derivative computation:
-![Zero Padding Example](path/to/zero_padding_image.png)
-
-### 2. Vector Field Visualization
-Resultant optical flow vectors displayed using MATLAB's `quiver`:
-![Vector Field](path/to/vector_field_image.png)
-
-### 3. Multi-resolution Pyramids
-Under-sampling and over-sampling for efficient computation:
-![Pyramids](path/to/pyramids_image.png)
-
----
-
-## Known Issues and Improvements
-### Challenges:
-- Handling boundary conditions during subsampling.
-- Ensuring robustness in noise-prone regions.
-
-### Proposed Enhancements:
-- Adaptive regularization parameter \(\alpha\).
-- Improved hybrid methods using machine learning.
+#### Using Lucas-Kanade Method:
+![Lucas-Kanade Results](path/to/lucas_kanade_results.png)
