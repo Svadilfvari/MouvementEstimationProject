@@ -49,7 +49,7 @@ Below are the two consecutive frames used as input for the optical flow estimati
 The estimated velocity vectors are shown below:
 
 #### Using Horn-Schunck Method:
-![Horn-Schunck Results](horn_schunck_results.png)
+![Horn-Schunck Results](horn_schunck_results.PNG)
 
 #### Using Lucas-Kanade Method:
-![Lucas-Kanade Results](lucas_kanade_results.png)
+![Lucas-Kanade Results](lucas_kanade_results.PNG)
